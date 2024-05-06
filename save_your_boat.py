@@ -1,3 +1,16 @@
+"""
+welcome to save your boat game :D
+Description :
+1) you have a boat that have 5 lives when boat lives end it will drown
+2) you should guess the word by choosing a letter from the English alphabet
+3) if you got a letter wrong you will lose a live
+4) when you guess the letter right you will be provided with the updated word
+5) if you guess everything right you will win
+6) if you finish your lives and did not guess the word you will lose
+7) to quit you can write exit
+wanna play ? (y,n)y
+"""
+
 words = [
     {
         "name": "banana",
