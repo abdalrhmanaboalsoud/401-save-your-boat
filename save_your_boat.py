@@ -53,52 +53,82 @@ words = [
     },
 ]
 
-remaining_lives = 5 
+# Sets the initial number of lives for the game.
+remaining_lives = 5
+
+# Defines a function to handle the guessing of words.
 def guess_the_word(round_number):
+    # Allows access to the global variable 'remaining_lives' within the function.
     global remaining_lives
+    # Retrieves the current word to guess based on the round number.
     current_word = words[round_number]
+    # The solution is the actual word that needs to be guessed.
     solution = current_word["name"]
     print("Unscramble this word:")
+    # Creates a string of underscores representing the unguessed letters of the solution.
     blank_word = f'{"_" * len(solution)}'
     print(blank_word)
+    # Prints the first clue for the word.
     print("Clue:\n" + current_word["hint"].pop(0))
+    # Initializes the count of guesses made.
     guesses_made = 0
+    # Creates a list of guessed letters, initially filled with underscores.
     guessed_letters = list(blank_word)
 
+    # Starts an infinite loop for the guessing process.
     while True:
+        # Prompts the user to enter a letter.
         guess = input("Enter a letter ->")
+        # Checks if the user wants to exit the game.
         if guess != "exit":
+            # Checks if the guessed letter is incorrect.
             if guess != solution[guesses_made]:
                 print("Incorrect guess")
+                # Provides the next clue.
                 print("Clue:\n" + current_word["hint"].pop(0))
+                # Decreases the number of remaining lives.
                 remaining_lives -= 1
                 print(f"Remaining lives: {remaining_lives}")
+                # If only one life remains, provides two additional clues.
                 if remaining_lives == 1:
                     print("Clue:\n" + current_word["hint"].pop(0))
                     print("Clue:\n" + current_word["hint"].pop(0))
             else:
+                # If the guessed letter is correct, updates the guessed letters list.
                 print("Correct letter!")
                 guessed_letters[guesses_made] = guess
+                # Increments the count of guesses made.
                 guesses_made += 1
+                # Prints the current state of the guessed word.
                 print("".join(guessed_letters))
+            # Checks if the entire word has been guessed correctly.
             if "".join(guessed_letters) == solution:
                 break
         else:
+            # If the user enters 'exit', ends the game.
             return 0
+        # If all lives are lost, ends the game.
         if remaining_lives == 0:
             return 0
 
-
+# Checks if the script is being run directly (not imported).
 if __name__ == "__main__":
+    # Initializes the round number.
     round_number = 0
+    # Prompts the user to start the game.
     start_game = input("Do you want to play? (y/n)")
 
+    # Continues to prompt for rounds until the user exits or says 'no'.
     while start_game.lower() != "n" and start_game.lower() != "exit":
+        # Calls the function to start a round of guessing.
         result = guess_the_word(round_number)
+        # Increments the round number for the next word.
         round_number += 1
+        # Checks if the game is over due to running out of lives or the user exiting.
         if remaining_lives == 0 or result == 0:
             print("Game Over")
             break
+        # Checks if all words have been used.
         if round_number > len(words) - 1:
             print("Game Over")
             break
