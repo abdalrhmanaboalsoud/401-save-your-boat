@@ -1,16 +1,3 @@
-"""
-welcome to save your boat game :D
-Description :
-1) you have a boat that have 5 lives when boat lives end it will drown
-2) you should guess the word by choosing a letter from the English alphabet
-3) if you got a letter wrong you will lose a live
-4) when you guess the letter right you will be provided with the updated word
-5) if you guess everything right you will win
-6) if you finish your lives and did not guess the word you will lose
-7) to quit you can write exit
-wanna play ? (y,n)y
-"""
-
 words = [
     {
         "name": "banana",
@@ -55,6 +42,7 @@ words = [
 
 # Sets the initial number of lives for the game.
 remaining_lives = 5
+
 
 # Defines a function to handle the guessing of words.
 def guess_the_word(round_number):
@@ -111,12 +99,24 @@ def guess_the_word(round_number):
         if remaining_lives == 0:
             return 0
 
+
 # Checks if the script is being run directly (not imported).
 if __name__ == "__main__":
     # Initializes the round number.
     round_number = 0
     # Prompts the user to start the game.
-    start_game = input("Do you want to play? (y/n)")
+    start_game = input(
+        """welcome to save your boat game :D
+Description :
+1) you have a boat that have 5 lives when boat lives end it will drown
+2) you should guess the word by choosing a letter from the English alphabet
+3) if you got a letter wrong you will lose a live
+4) when you guess the letter right you will be provided with the updated word
+5) if you guess everything right you will win
+6) if you finish your lives and did not guess the word you will lose
+7) to quit you can write exit
+wanna play ? (y,n)"""
+    )
 
     # Continues to prompt for rounds until the user exits or says 'no'.
     while start_game.lower() != "n" and start_game.lower() != "exit":
